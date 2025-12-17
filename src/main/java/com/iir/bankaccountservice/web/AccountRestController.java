@@ -16,7 +16,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api")
 public class AccountRestController {
-   @Autowired
+
     private  BankAccountRepository bankAccountRepository;
    @Autowired
    private  AccountService accountService;
