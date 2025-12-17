@@ -3,28 +3,28 @@ package com.iir.bankaccountservice.web;
 import com.iir.bankaccountservice.dto.BankAccountRequestDTO;
 import com.iir.bankaccountservice.dto.BankAccountResponseDTO;
 import com.iir.bankaccountservice.entities.BankAccount;
-import com.iir.bankaccountservice.mappers.AccountMapper;
 import com.iir.bankaccountservice.repositories.BankAccountRepository;
 import com.iir.bankaccountservice.service.AccountService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
 public class AccountRestController {
-   @Autowired
-    private  BankAccountRepository bankAccountRepository;
-   @Autowired
-   private  AccountService accountService;
-   @Autowired
-   private AccountMapper accountMapper;
-    public AccountRestController(BankAccountRepository bankAccountRepository) {
+
+   private  final BankAccountRepository bankAccountRepository;
+   private  final AccountService accountService;
+
+
+
+    public AccountRestController(BankAccountRepository bankAccountRepository, AccountService accountService) {
         this.bankAccountRepository = bankAccountRepository;
+        this.accountService = accountService;
+
     }
+
     @GetMapping("/bankAccounts")
     public List<BankAccount> getBankAccounts() {
         return bankAccountRepository.findAll();
